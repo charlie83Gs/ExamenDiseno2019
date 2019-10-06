@@ -24,7 +24,12 @@ export default class WindowExtra extends Component<WindowExtraProps, WindowExtra
       this.state = {"controller" : controller, extras : controller.getExtraCatalog().getExtras(),selected : []}
 
       this.goToBill = this.goToBill.bind(this);
+      this.goBack = this.goBack.bind(this);
 
+  }
+
+  goBack(){
+    this.props.navigator.setScreen(SCREEN_KEYS.FINISH); 
   }
 
   goToBill(){
@@ -67,7 +72,7 @@ export default class WindowExtra extends Component<WindowExtraProps, WindowExtra
 
               )}
             </div>
-
+            <Button onClick={myself.goBack} className="btn-secondary mx-5">Volver</Button>
             <Button onClick={myself.goToBill} className="btn-success">Continue</Button>
 
     </div>

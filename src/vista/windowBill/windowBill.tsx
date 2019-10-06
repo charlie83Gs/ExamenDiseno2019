@@ -23,7 +23,13 @@ export default class WindowBill extends Component<WindowBillProps, WindowBillSta
 
       this.state = {order : controller.getOrder(), bill : controller.checkIn()}
       this.finish = this.finish.bind(this);
+      this.goBack = this.goBack.bind(this);
   }
+
+  goBack(){
+    this.props.navigator.setScreen(SCREEN_KEYS.EXTRA);
+  }
+
 
   getTotal() : number{
     var total =0;
@@ -102,6 +108,7 @@ export default class WindowBill extends Component<WindowBillProps, WindowBillSta
           </tbody>
         </Table>
 
+        <Button onClick={myself.goBack} className="btn-secondary mx-5">Volver</Button>
         <Button onClick={myself.finish} className="btn-success">Terminar</Button>
       </Container> 
     )

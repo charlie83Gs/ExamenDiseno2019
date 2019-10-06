@@ -26,6 +26,7 @@ export default class WindowOrderApartment extends Component<WindowOrderApartment
 
       this.goToFinish = this.goToFinish.bind(this);
       this.onSelectApartment = this.onSelectApartment.bind(this);
+      this.goBack = this.goBack.bind(this);
   }
   // render will know everything!
   goToFinish(){
@@ -34,6 +35,11 @@ export default class WindowOrderApartment extends Component<WindowOrderApartment
       OrderCointroller.getInstance().setApartment(this.state.selected);
       this.props.navigator.setScreen(SCREEN_KEYS.FINISH);
     }
+  }
+
+  goBack(){
+    this.props.navigator.setScreen(SCREEN_KEYS.MAIN);
+    
   }
 
   onSelectApartment(apartment : Apartment){
@@ -58,6 +64,7 @@ export default class WindowOrderApartment extends Component<WindowOrderApartment
             }
             </Row>
             </div>
+            <Button onClick={myself.goBack} className="btn-danger mx-5">Cancelar</Button>
             {this.state.selected && <Button onClick={myself.goToFinish} className="btn-success">Seleccionar</Button>}
         </Container>
     )

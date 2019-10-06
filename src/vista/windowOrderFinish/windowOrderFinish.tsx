@@ -38,8 +38,14 @@ export default class WindowOrderFinish extends Component<WindowOrderFinishProps,
         finish : []
       }
 
+      this.goBack = this.goBack.bind(this);
       this.goToExtra = this.goToExtra.bind(this);
 
+  }
+
+  goBack(){
+    this.props.navigator.setScreen(SCREEN_KEYS.APARTMENT);
+    
   }
 
   goToExtra(){
@@ -115,7 +121,9 @@ export default class WindowOrderFinish extends Component<WindowOrderFinishProps,
 
               )}
             </div>
-            <Button onClick={myself.goToExtra} className="btn-success">Continue</Button>
+              <Button onClick={myself.goBack} className="btn-secondary mx-5">Volver</Button>
+              <Button onClick={myself.goToExtra} className="btn-success">Continue</Button>
+
         </div>
     )
   }
