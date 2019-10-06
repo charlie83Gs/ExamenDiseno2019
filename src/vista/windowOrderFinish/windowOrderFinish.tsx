@@ -44,8 +44,14 @@ export default class WindowOrderFinish extends Component<WindowOrderFinishProps,
 
   goToExtra(){
     //update order
+    var order = this.state.controller.getOrder();
+    if(order){
+      order.setFinish(this.state.finish); 
+      this.props.navigator.setScreen(SCREEN_KEYS.EXTRA);
 
-    this.props.navigator.setScreen(SCREEN_KEYS.EXTRA);
+    }
+
+
   }
   // render will know everything!
   render() {
@@ -53,16 +59,16 @@ export default class WindowOrderFinish extends Component<WindowOrderFinishProps,
 
     return (
         <div>
-            <h1>Selecciona un acabado</h1>
+            <h1>Selecciona un acabado (Paso 2/4)</h1>
             <div  style={{height:"40rem", overflowY:"auto", overflowX :"hidden"}}>
             <h2>Paint</h2>
-            <Row>
+            <Row className="justify-content-center align-items-center">
             {
               this.state.paints.map(
                 (paint : PaintColor, index : number) =>{
                   return (<div className= "m-2" key ={index}>
                   <Col xl="4"lg="4"md="4"xs="4"sm="4">
-                    <Button style={{backgroundColor: paint.getColor()}}  onClick={ ()=>{ myself.state.finish.push(paint)}} >{paint.getName() }</Button>
+                    <Button style={{backgroundColor: paint.getColor()}}  onClick={ ()=>{ myself.state.finish.push(paint); myself.setState({finish:myself.state.finish})}} >{paint.getName() }</Button>
                   </Col>
                   </div>)
                 }
@@ -70,21 +76,44 @@ export default class WindowOrderFinish extends Component<WindowOrderFinishProps,
             }
             </Row>
             
-            <h2>Paint</h2>
-            <Row>
+            <h2>Azulejos</h2>
+            <Row className="justify-content-center align-items-center">
             {
-              this.state.paints.map(
-                (paint : PaintColor, index : number) =>{
+              this.state.azulejos.map(
+                (azulejo : Azulejo, index : number) =>{
                   return (<div className= "m-2" key ={index}>
                   <Col xl="4"lg="4"md="4"xs="4"sm="4">
-                    <Button style={{backgroundColor: paint.getColor()}}  onClick={ ()=>{ myself.state.finish.push(paint)}} >{paint.getName() }</Button>
+                    <Button   onClick={ ()=>{ myself.state.finish.push(azulejo);myself.setState({finish:myself.state.finish})}} ><p>{azulejo.getName() }</p><p>{azulejo.getDescription()}</p></Button>
                   </Col>
                   </div>)
                 }
               )
             }
             </Row>
-            
+
+            <h2>Kitchen</h2>
+            <Row className="justify-content-center align-items-center">
+            {
+              this.state.furniture.map(
+                (furniture : KitchenFurniture, index : number) =>{
+                  return (<div className= "m-2" key ={index}>
+                  <Col xl="4"lg="4"md="4"xs="4"sm="4">
+                    <Button   onClick={ ()=>{ myself.state.finish.push(furniture);myself.setState({finish:myself.state.finish})}} ><p>{furniture.getName() }</p><p>{furniture.getDescription()}</p></Button>
+                  </Col>
+                  </div>)
+                }
+              )
+            }
+            </Row>
+
+            </div>
+            <div style={{position:"absolute", top:"20px", left: "20px"}}> 
+              {this.state.finish.map(
+                (finis : Finish , key: number) =>{
+                  return <p className="my-0" key={key}>{finis.getName()}</p>
+                }
+
+              )}
             </div>
             <Button onClick={myself.goToExtra} className="btn-success">Continue</Button>
         </div>

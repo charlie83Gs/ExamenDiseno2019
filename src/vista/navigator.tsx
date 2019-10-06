@@ -34,7 +34,7 @@ screens["BILL_WINDOW"] = WindowBill;
 export default class Navigator extends Component<NavigatorProps, NavigatorState> {
   constructor(props: NavigatorProps){
       super(props);
-      this.state = {Screen : screens["MAIN_WINDOW"]}
+      this.state = {Screen : screens["APARTMENT_WINDOW"]}
   }
 
   public setScreen(name : string){

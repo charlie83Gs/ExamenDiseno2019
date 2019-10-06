@@ -46,7 +46,7 @@ export default class WindowOrderApartment extends Component<WindowOrderApartment
 
     return (
         <Container>
-            <h1>Selecciona un apartamento</h1>
+            <h1>Selecciona un apartamento (Paso 1/4)</h1>
             <div  style={{height:"40rem", overflowY:"auto", overflowX :"hidden"}}>
             <Row>
             {
